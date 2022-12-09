@@ -104,11 +104,11 @@ The Storage contract is used to store a series of [NFT ID, Cumulative Odds] entr
 
 ### Commitment in advance
 
-It is important to commit to a round for randomness before it is known.
+It is important to commit to a future round for randomness before it is known.
 
 The only secure way we found to do this is to take custody of payment. See [Non-Viable Approaches](#non-viable-approaches) for some ideas we rejected.
 
-We have followed the recommendations by Algorand inc **with the exception of committing to the currently executed round**: if a draw/burn/... request comes in at a multiple-of-8 round, which are the rounds of "new" randomness, we commit to that round instead of that+8. For a fully secure implementation, 
+We have followed the recommendations by Algorand inc **with the exception of committing to the currently executed round when it is a "new randomness" round**: if a draw/burn/... request comes in at a multiple-of-8 round, which are the rounds of "new" randomness, we commit to that round instead of (current_round + 8).
 
 Due to this design decision, CupStakes is technically open to an attack by collusion between the block proposer and the VRF private key holder. The block proposer can't choose the Block Header which is utilized to produce the VRF seed, but if they had access to the VRF service private key, they would be able to "peek" at the result and only execute a draw payment if the result would be favorable.
 
@@ -220,7 +220,7 @@ In order to avoid having to implement a chain-watching backend executor of draws
 
 **This approach is not secure** because the user can control the outcome of the transaction by controlling their balance. If they could inspect the outcome of the draw from the VRF output before we can execute the transaction, they would be able to move enough funds out of their account to make the transaction fail, thus gaming the system.
 
-## Misc
+## Misc Notes
 
 CupStakes has specific characteristics and requirements that may not be applicable to all lotteries:
 
