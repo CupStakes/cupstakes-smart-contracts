@@ -1,0 +1,181 @@
+{
+  "name": "draw",
+  "methods": [
+    {
+      "name": "closeout_nft",
+      "args": [],
+      "returns": {
+        "type": "void"
+      }
+    },
+    {
+      "name": "optin",
+      "args": [],
+      "returns": {
+        "type": "void"
+      }
+    },
+    {
+      "name": "update_state_int",
+      "args": [
+        {
+          "type": "byte[]",
+          "name": "key1"
+        },
+        {
+          "type": "uint64",
+          "name": "val1"
+        },
+        {
+          "type": "byte[]",
+          "name": "key2"
+        },
+        {
+          "type": "uint64",
+          "name": "val2"
+        },
+        {
+          "type": "byte[]",
+          "name": "key3"
+        },
+        {
+          "type": "uint64",
+          "name": "val3"
+        },
+        {
+          "type": "byte[]",
+          "name": "key4"
+        },
+        {
+          "type": "uint64",
+          "name": "val4"
+        },
+        {
+          "type": "byte[]",
+          "name": "key5"
+        },
+        {
+          "type": "uint64",
+          "name": "val5"
+        },
+        {
+          "type": "byte[]",
+          "name": "key6"
+        },
+        {
+          "type": "uint64",
+          "name": "val6"
+        },
+        {
+          "type": "byte[]",
+          "name": "key7"
+        },
+        {
+          "type": "uint64",
+          "name": "val7"
+        },
+        {
+          "type": "byte[]",
+          "name": "key8"
+        },
+        {
+          "type": "uint64",
+          "name": "val8"
+        }
+      ],
+      "returns": {
+        "type": "void"
+      }
+    },
+    {
+      "name": "get_free_draw_nft",
+      "args": [
+        {
+          "type": "uint64",
+          "name": "num"
+        }
+      ],
+      "returns": {
+        "type": "void"
+      }
+    },
+    {
+      "name": "free_draw",
+      "args": [],
+      "returns": {
+        "type": "uint64"
+      }
+    },
+    {
+      "name": "draw",
+      "args": [],
+      "returns": {
+        "type": "uint64"
+      }
+    },
+    {
+      "name": "draw3",
+      "args": [],
+      "returns": {
+        "type": "uint64"
+      }
+    },
+    {
+      "name": "burn_draw",
+      "args": [
+        {
+          "type": "uint64",
+          "name": "slot"
+        }
+      ],
+      "returns": {
+        "type": "uint64"
+      }
+    },
+    {
+      "name": "burn_draw2",
+      "args": [
+        {
+          "type": "uint64",
+          "name": "slot1"
+        },
+        {
+          "type": "uint64",
+          "name": "slot2"
+        }
+      ],
+      "returns": {
+        "type": "uint64"
+      }
+    },
+    {
+      "name": "burn_draw3",
+      "args": [],
+      "returns": {
+        "type": "uint64"
+      }
+    },
+    {
+      "name": "exec_draw",
+      "args": [],
+      "returns": {
+        "type": "void"
+      }
+    },
+    {
+      "name": "collect",
+      "args": [],
+      "returns": {
+        "type": "void"
+      }
+    },
+    {
+      "name": "refund",
+      "args": [],
+      "returns": {
+        "type": "uint64"
+      }
+    }
+  ],
+  "networks": {}
+}
