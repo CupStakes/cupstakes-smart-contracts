@@ -234,3 +234,47 @@ As such the contract:
 - Odds must be updatable and will vary wildly - Brazil will start at 0.2% odds, whereas common teams will have significantly higher Draw odds.
 - Odds are not dynamically calculated, as they could be in a raffle with limited "stock".
 
+## Custom ASSERT error messages
+
+Another innovation we implemented in this contract was a way to surface a human-meaningful string when an expected error message is encountered.
+
+This is by making the last op on the stack a Bytes(error_string) and [failing an assert like so](draw/sc.py#L85):
+
+```
+# assert that fails with an error string attached
+def custom_assert(cond, str):
+    return If(Not(cond)).Then(Assert(Bytes('') == Bytes(str)))
+
+# same as above, but inversed - skips a Not()
+# not sure if it saves opcode costs
+def fail_if(cond, str):
+    return If(cond).Then(Assert(Bytes('') == Bytes(str)))
+
+# as above but without condition
+def fail(str):
+    return Assert(bytes_empty == Bytes(str))
+```
+
+This is invoked like so:
+
+```
+err_drawing_disabled = "DRAWING DISABLED"
+
+# ...
+
+    Seq( 
+      # check drawing is enabled
+      fail_if(App.globalGet(ticket_key) == Int(0), err_drawing_disabled),
+      # ...
+    )
+```
+
+We then parse it on the frontend with a REGEX like this and present it to the user:
+
+```
+const contractErrorRegex = /logic eval error.*assert.*byte.*\/\/ "([^"]+)"/;
+function parseContractError(message) {
+  const match = contractErrorRegex.exec(message);
+  return match && match[1];
+}
+```
